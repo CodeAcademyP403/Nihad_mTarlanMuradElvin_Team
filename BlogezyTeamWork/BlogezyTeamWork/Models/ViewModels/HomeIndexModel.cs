@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlogezyTeamWork.Models.ViewModels
 {
-    public class HomeViewModel
+    public class HomeIndexModel
     {
         public IEnumerable<Article> Articles { get; set; } 
         public IEnumerable<MenuItem> Menus { get; set; }

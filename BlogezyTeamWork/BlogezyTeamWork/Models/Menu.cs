@@ -14,6 +14,7 @@ namespace BlogezyTeamWork.Models
 
         public string Slug { get; set; }
         public int Sorting { get; set; }
+        public bool Visibility { get; set; }
 
         public virtual ICollection<SubMenu> SubMenus { get; set; }
     }
