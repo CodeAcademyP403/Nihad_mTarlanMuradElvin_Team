@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogezyTeamWork.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,8 +25,16 @@ namespace BlogezyTeamWork
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BlogezyDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
+            });
+
+
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(15);//You can set Time   
+            }); 
             services.AddMvc();
 
         }
@@ -35,10 +45,16 @@ namespace BlogezyTeamWork
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
             }
+            else
+                app.UseExceptionHandler("/Home/error");
 
+
+            app.UseSession();
             app.UseStaticFiles();
             app.UseAuthentication();
+
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
