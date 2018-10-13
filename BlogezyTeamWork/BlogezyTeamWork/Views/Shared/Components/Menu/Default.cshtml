@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Menu>
+@{
+    ViewData["Title"] = "Default";
+}
+
+<div class="col-12 left-side-logo">
+    <img src="~/images/logo.png" alt="Alternate Text" class="w-100" />
+    <p class="logo-text">Graduating from the halls of the University Of Western Sydney in late 2011.</p>
+</div>
+<div class="menu col-12">
+
+    <ul class="side-list">
+
+
+        @foreach (var item in Model)
+        {
+            @if (item.SubMenus == null)
+            {
+                <li class="side-list-items"><a asp-action="@item.Action" asp-controller="@item.Controller">item.Name</a></li>
+            }
+            else
+            {
+                <li class="side-list-items dropdown-list">
+                    <a href="#">@item.Name</a>
+                    <ul class="drop-list">
+                        @foreach (var submenu in item.SubMenus)
+                        {
+                            <li class="drop-items"><a  asp-action="@submenu.Action" asp-controller="@submenu.Controller">@submenu.Name</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+        }
+
+    </ul>
+</div>
+<div class="col-12 text-center copyright py-5">
+    <p>2017 © Blogezy.</p>
+</div>

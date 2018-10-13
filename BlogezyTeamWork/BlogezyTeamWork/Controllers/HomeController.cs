@@ -24,20 +24,16 @@ namespace BlogezyTeamWork.Controllers
             var articles = await _db.Articles.OrderByDescending(x => x.AddedDate)
                                                               .ToListAsync();
 
-            var menus = await _db.Menus.Include(x => x.SubMenus).Where(x => x.Visibility == true)
-                                                              .ToListAsync();
-
             var socialaccounts = await _db.SocialAccounts
                                                         .ToListAsync();
 
             HomeIndexModel him = new HomeIndexModel
             {
                 Articles = articles,
-                Menus = menus,
                 SocialAccounts = socialaccounts
             };
 
-            return View(him);
+            return View();
 
         }
     }
