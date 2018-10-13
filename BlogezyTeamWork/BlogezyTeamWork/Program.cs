@@ -31,7 +31,7 @@ namespace BlogezyTeamWork
                             Name = "Beautiful Day With Friends In Paris",
                             Description = "Whether an identity or campaign, we make your brand visible, relevant and effective by placing the digital at the center of its ecosystem, without underestimating the power of traditional media. Whether an identity or campaign, we make your brand visible.",
                             Detail = "Whether an identity or campaign, we make your brand visible, relevant and effective by placing the digital at the center of its ecosystem, without underestimating the power of traditional media. Whether an identity or campaign, we make your brand visible.",
-                            PhotoPath = null,
+                            PhotoPath = "blog-1.jpg",
                             AddedDate = DateTime.Now,
                             EditDate = DateTime.Now,
                             ViewCount = 0,
@@ -163,6 +163,8 @@ namespace BlogezyTeamWork
                         dbContext.SaveChanges();
 
                     }
+
+                    UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
 
                 }
             }

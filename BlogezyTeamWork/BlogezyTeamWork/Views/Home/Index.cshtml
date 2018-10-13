@@ -37,14 +37,16 @@
                 </ul>
             </header>
             <div class="img col-12 p-0">
-                <a href="#"> <img src="~/Images/@item.PhotoPath" alt="Alternate Text" /></a>
+                <a asp-action="Article" asp-controller="Home" asp-route-id="@item.Id"> <img src="~/Images/@item.PhotoPath" alt="Alternate Text" /></a>
                 <div class="overlay"></div>
             </div>
             <div class="description col-12 p-0 my-3">
                 <p>@item.Description</p>
             </div>
             <div class="col-12 read-more p-0">
-                <button class="btn btn-primary">Read More</button>
+                <a asp-action="Article" asp-controller="Home" asp-route-id="@item.Id">
+                    <button class="btn btn-primary">Read More</button>
+                </a>
             </div>
         </div>
     }

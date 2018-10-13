@@ -119,7 +119,8 @@ namespace BlogezyTeamWork.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    Url = table.Column<string>(nullable: true),
+                    Icon = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -259,25 +260,32 @@ namespace BlogezyTeamWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArticleComments",
+                name: "ArticleUserComments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AppUserId = table.Column<string>(nullable: true),
                     ArticleId = table.Column<int>(nullable: false),
                     CommentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArticleComments", x => x.Id);
+                    table.PrimaryKey("PK_ArticleUserComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ArticleComments_Articles_ArticleId",
+                        name: "FK_ArticleUserComments_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ArticleUserComments_Articles_ArticleId",
                         column: x => x.ArticleId,
                         principalTable: "Articles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArticleComments_Comments_CommentId",
+                        name: "FK_ArticleUserComments_Comments_CommentId",
                         column: x => x.CommentId,
                         principalTable: "Comments",
                         principalColumn: "Id",
@@ -317,13 +325,18 @@ namespace BlogezyTeamWork.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArticleComments_ArticleId",
-                table: "ArticleComments",
+                name: "IX_ArticleUserComments_AppUserId",
+                table: "ArticleUserComments",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArticleUserComments_ArticleId",
+                table: "ArticleUserComments",
                 column: "ArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArticleComments_CommentId",
-                table: "ArticleComments",
+                name: "IX_ArticleUserComments_CommentId",
+                table: "ArticleUserComments",
                 column: "CommentId");
 
             migrationBuilder.CreateIndex(
@@ -377,7 +390,7 @@ namespace BlogezyTeamWork.Migrations
                 name: "ArticleCategories");
 
             migrationBuilder.DropTable(
-                name: "ArticleComments");
+                name: "ArticleUserComments");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");

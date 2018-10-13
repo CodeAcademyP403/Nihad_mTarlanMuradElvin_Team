@@ -1,5 +1,4 @@
-﻿@model AppUser
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,6 +19,20 @@
         <div class="col-11 main-page mx-auto my-5">
             <div class="row">
                 <div class="col-lg-3 left-side">
+                    <div class="col-12 login-logout">
+                        <ul>
+                            @if (Context.Session.GetString("isLoged") == null)
+                            {
+                                <li><a asp-action="Login" asp-controller="Account">Login</a></li>
+                                <li><a asp-action="Register" asp-controller="Account">Register</a></li>
+                            }
+                            else
+                            {
+                                <p>WELCOME BACK @Context.Session.GetString("name").ToString()</p>
+                                <li><a asp-action="Logout" asp-controller="Account" asp-route-id="@Context.Session.GetString("id")">Logout</a></li>
+                            }
+                        </ul>
+                    </div>
 
                     <vc:Menu></vc:Menu>
 
