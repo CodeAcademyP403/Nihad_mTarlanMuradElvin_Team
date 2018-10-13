@@ -125,6 +125,8 @@ namespace BlogezyTeamWork
 
 
                     }
+
+                    //UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
                 }
             }
 
