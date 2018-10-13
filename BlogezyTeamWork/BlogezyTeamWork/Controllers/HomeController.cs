@@ -37,7 +37,7 @@ namespace BlogezyTeamWork.Controllers
                 SocialAccounts = socialaccounts
             };
 
-            return View(him);
+            return View();
 
         }
     }

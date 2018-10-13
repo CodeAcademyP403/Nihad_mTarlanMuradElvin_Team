@@ -19,9 +19,10 @@ namespace BlogezyTeamWork.Models
                 RoleManager<IdentityRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 AppUser user = new AppUser()
                 {
+                    UserName = "Admin",
                     Email = "admin@gmail.com"
                 };
-                var identityResult =  await userManager.CreateAsync(user, "Admin");
+                var identityResult =  await userManager.CreateAsync(user, "Admin1234@");
                 if (identityResult.Succeeded)
                 {
                     await roleManager.CreateAsync(new IdentityRole() { Name = "Admin"});

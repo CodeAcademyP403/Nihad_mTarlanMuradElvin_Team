@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model AppUser
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,6 +23,24 @@
                     <div class="col-12 left-side-logo">
                         <img src="~/images/logo.png" alt="Alternate Text" class="w-100" />
                         <p class="logo-text">Graduating from the halls of the University Of Western Sydney in late 2011.</p>
+                    </div>
+                    <div class="col-12 user">
+                        <h3></h3>
+                        @if (Context.Session.GetString("isLoged") != null)
+                        {
+                            <p>WELCOME BACK @Model.UserName !</p>
+                            <ul>
+                                <li><a asp-action="Logout" asp-controller="Account">Logout</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul>
+                                <li><a asp-action="Login" asp-controller="Account">Login</a></li>
+                                <li><a asp-action="Register" asp-controller="Account">Register</a></li>
+                            </ul>
+                        }
+
                     </div>
                     <div class="menu col-12">
                         <ul class="side-list">
