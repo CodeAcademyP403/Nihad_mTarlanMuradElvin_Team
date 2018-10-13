@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogezyTeamWork.Migrations
 {
     [DbContext(typeof(BlogezyDbContext))]
-    [Migration("20181013091808_CategoriArticle")]
-    partial class CategoriArticle
+    [Migration("20181013224216_TableNameChanged")]
+    partial class TableNameChanged
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -118,11 +118,13 @@ namespace BlogezyTeamWork.Migrations
                     b.ToTable("ArticleCategories");
                 });
 
-            modelBuilder.Entity("BlogezyTeamWork.Models.ArticleComments", b =>
+            modelBuilder.Entity("BlogezyTeamWork.Models.ArticleUserComments", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId");
 
                     b.Property<int>("ArticleId");
 
@@ -130,11 +132,13 @@ namespace BlogezyTeamWork.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("ArticleId");
 
                     b.HasIndex("CommentId");
 
-                    b.ToTable("ArticleComments");
+                    b.ToTable("ArticleUserComments");
                 });
 
             modelBuilder.Entity("BlogezyTeamWork.Models.Category", b =>
@@ -349,10 +353,14 @@ namespace BlogezyTeamWork.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BlogezyTeamWork.Models.ArticleComments", b =>
+            modelBuilder.Entity("BlogezyTeamWork.Models.ArticleUserComments", b =>
                 {
-                    b.HasOne("BlogezyTeamWork.Models.Article", "Article")
+                    b.HasOne("BlogezyTeamWork.Models.AppUser", "AppUser")
                         .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("BlogezyTeamWork.Models.Article", "Article")
+                        .WithMany("ArticleComments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade);
 

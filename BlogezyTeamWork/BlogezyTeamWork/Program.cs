@@ -133,28 +133,28 @@ namespace BlogezyTeamWork
                         {
                             Name = "Facebook",
                             Url = "facebook.com",
-                            Icon = "fab fa-facebook-f"
+                            
                         };
 
                         SocialAccount twitter = new SocialAccount()
                         {
                             Name = "Twitter",
                             Url = "twitter.com",
-                            Icon = "fab fa-twitter"
+                         
                         };
 
                         SocialAccount instagram = new SocialAccount()
                         {
                             Name = "Instagram",
                             Url = "instagram.com",
-                            Icon = "fab fa-instagram"
+                            
                         };
 
                         SocialAccount pinterest = new SocialAccount()
                         {
                             Name = "Pinterest",
                             Url = "pinterest.com",
-                            Icon = "fab fa-pinterest-p"
+                            
                         };
 
                         #endregion
@@ -162,7 +162,9 @@ namespace BlogezyTeamWork
                         dbContext.SocialAccounts.AddRange(facebok, twitter, instagram, pinterest);
                         dbContext.SaveChanges();
 
+                      
                     }
+                    UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
 
                 }
             }

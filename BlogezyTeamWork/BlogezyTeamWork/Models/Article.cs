@@ -26,5 +26,6 @@ namespace BlogezyTeamWork.Models
         public int CommentCount { get; set; }
 
         public virtual ICollection<ArticleCategory> ArticleCategory { get; set; }
+        public virtual ICollection<ArticleUserComments> ArticleComments { get; set; }
     }
 }
