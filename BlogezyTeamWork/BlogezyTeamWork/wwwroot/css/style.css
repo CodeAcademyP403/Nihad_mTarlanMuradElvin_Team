@@ -1,0 +1,122 @@
+﻿/*Defaults*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+a{
+    text-decoration:none;
+}
+li{
+    list-style-type:none;
+}
+/*End Defaults*/
+body {
+    background-color: #eee;
+}
+.left-side {
+    background-color: #f0f4f7;
+}
+.right-side {
+    background-color: white;
+}
+.logo-text {
+    color: #868e96 !important;
+    font-size:14px;
+    margin-top:15px;
+}
+.side-list{
+    margin:0;
+}
+.drop-list{
+    display:none;
+    padding-top:20px;
+}
+    .drop-list  a {
+        color: #868e96!important;
+        font-size:14px!important;
+        font-weight:normal;
+    }
+.side-list-items a{
+  color:black;
+  font-weight:bold;
+  font-size:1em;
+}
+.side-list-items a:hover{
+    text-decoration:none;
+}
+.side-list-items {
+    padding: 30px 50px 0px 20px;
+}
+.copyright p{
+    color:#555;
+    font-size:14px;
+}
+.header p {
+    color: #868e96 !important;
+}
+.header h2{
+    font-weight:bold;
+}
+.blog-title-info li{
+    padding:10px;
+}
+.blog-title h5 a {
+    color: #333;
+    font-weight:normal;
+}
+    .blog-title h5 a:hover{
+        text-decoration:none;
+    }
+    .blog-title h5 a:hover {
+        color: #007bff;
+        transition: all 0.3s ease-in-out;
+    }
+.blog-title-info li:first-child {
+    padding-left:0px;
+}
+.blog-title-info li {
+    color: #868e96;
+    font-weight:normal;
+    font-size:13px;
+}
+.blog .img{
+    height:300px;
+    position:relative;
+}
+.blog .img img{
+    width:100%;
+}
+.blog .img .overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:103%;
+    background-color:#eee;
+    opacity:0;
+
+}
+.blog .img:hover .overlay{
+    opacity:0.4;
+    cursor:pointer;
+    transition:all 0.4s ease-in-out;
+}
+.social-accounts .accounts{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    background:#555;
+    border-radius:100%;
+    text-align:center;
+}
+    .social-accounts .accounts i{
+        color:white;
+        text-align:center;
+        line-height:50px;
+    }
+    .social-accounts hr {
+        width: 60px;
+        border: 0.7px solid blue;
+    }
