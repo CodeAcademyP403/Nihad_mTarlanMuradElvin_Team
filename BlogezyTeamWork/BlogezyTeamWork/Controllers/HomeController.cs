@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogezyTeamWork.Data;
-using BlogezyTeamWork.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,19 +20,19 @@ namespace BlogezyTeamWork.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var articles = await _db.Articles.OrderByDescending(x => x.AddedDate)
-                                                              .ToListAsync();
+            //var articles = from m in _db.ArticleCategories
+            //               join t in _db.Articles on m.ArticleId equals t.Id
+            //               join w in _db.Categories on m.CategoryId equals w.Id
+            //               select new 
 
-            var socialaccounts = await _db.SocialAccounts
-                                                        .ToListAsync();
+            var articles = await _db.Articles.Include(x => x.ArticleCategory).OrderByDescending(x => x.AddedDate)
+                                                  .ToListAsync();
 
-            HomeIndexModel him = new HomeIndexModel
-            {
-                Articles = articles,
-                SocialAccounts = socialaccounts
-            };
+            //var articles = await _db.Articles.Include(m => m.ArticleCategory).ToListAsync();
+            //{ }
+            //var name = articles[0].ArticleCategory.FirstOrDefault().Category.Name;
 
-            return View();
+            return View(articles);
 
         }
     }

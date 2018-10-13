@@ -4,14 +4,16 @@ using BlogezyTeamWork.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogezyTeamWork.Migrations
 {
     [DbContext(typeof(BlogezyDbContext))]
-    partial class BlogezyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181013084409_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,8 +194,6 @@ namespace BlogezyTeamWork.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Icon");
-
                     b.Property<string>("Name");
 
                     b.Property<string>("Url");
@@ -337,7 +337,7 @@ namespace BlogezyTeamWork.Migrations
             modelBuilder.Entity("BlogezyTeamWork.Models.ArticleCategory", b =>
                 {
                     b.HasOne("BlogezyTeamWork.Models.Article", "Article")
-                        .WithMany("ArticleCategory")
+                        .WithMany()
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade);
 

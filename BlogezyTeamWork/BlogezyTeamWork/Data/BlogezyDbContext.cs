@@ -11,16 +11,18 @@ namespace BlogezyTeamWork.Data
 {
     public class BlogezyDbContext : IdentityDbContext<AppUser>
     {
-        public BlogezyDbContext(DbContextOptions<BlogezyDbContext> dbContextOptions) : base(dbContextOptions) { }
+        public BlogezyDbContext(DbContextOptions<BlogezyDbContext> dbContextOptions) : base(dbContextOptions) {
+           
+        }
 
-        public DbSet<Article> Articles { get; set; }
-        public DbSet<ArticleCategory> ArticleCategories { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<SocialAccount> SocialAccounts { get; set; }
-        public DbSet<Menu> Menus { get; set; }
-        public DbSet<SubMenu> SubMenus { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<ArticleComments> ArticleComments { get; set; }
-
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<ArticleCategory> ArticleCategories { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<SocialAccount> SocialAccounts { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<SubMenu> SubMenus { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<ArticleComments> ArticleComments { get; set; }
+       
     }
 }

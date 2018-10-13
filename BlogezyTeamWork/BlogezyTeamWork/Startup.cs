@@ -27,7 +27,7 @@ namespace BlogezyTeamWork
         {
             services.AddDbContext<BlogezyDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
 
 

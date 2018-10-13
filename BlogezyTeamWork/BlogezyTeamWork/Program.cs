@@ -126,7 +126,44 @@ namespace BlogezyTeamWork
 
                     }
 
-                    //UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
+                    if (!dbContext.SocialAccounts.Any())
+                    {
+                        #region default menus
+                        SocialAccount facebok = new SocialAccount()
+                        {
+                            Name = "Facebook",
+                            Url = "facebook.com",
+                            Icon = "fab fa-facebook-f"
+                        };
+
+                        SocialAccount twitter = new SocialAccount()
+                        {
+                            Name = "Twitter",
+                            Url = "twitter.com",
+                            Icon = "fab fa-twitter"
+                        };
+
+                        SocialAccount instagram = new SocialAccount()
+                        {
+                            Name = "Instagram",
+                            Url = "instagram.com",
+                            Icon = "fab fa-instagram"
+                        };
+
+                        SocialAccount pinterest = new SocialAccount()
+                        {
+                            Name = "Pinterest",
+                            Url = "pinterest.com",
+                            Icon = "fab fa-pinterest-p"
+                        };
+
+                        #endregion
+
+                        dbContext.SocialAccounts.AddRange(facebok, twitter, instagram, pinterest);
+                        dbContext.SaveChanges();
+
+                    }
+
                 }
             }
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogezyTeamWork.Migrations
 {
     [DbContext(typeof(BlogezyDbContext))]
-    [Migration("20181013080205_Initial")]
-    partial class Initial
+    [Migration("20181013091808_CategoriArticle")]
+    partial class CategoriArticle
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -194,6 +194,8 @@ namespace BlogezyTeamWork.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Icon");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("Url");
@@ -337,7 +339,7 @@ namespace BlogezyTeamWork.Migrations
             modelBuilder.Entity("BlogezyTeamWork.Models.ArticleCategory", b =>
                 {
                     b.HasOne("BlogezyTeamWork.Models.Article", "Article")
-                        .WithMany()
+                        .WithMany("ArticleCategory")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade);
 

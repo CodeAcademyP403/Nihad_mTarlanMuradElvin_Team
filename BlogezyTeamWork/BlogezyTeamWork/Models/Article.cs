@@ -8,6 +8,12 @@ namespace BlogezyTeamWork.Models
 {
     public class Article
     {
+
+        public Article()
+        {
+            ArticleCategory = new HashSet<ArticleCategory>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -18,5 +24,7 @@ namespace BlogezyTeamWork.Models
         public DateTime EditDate { get; set; }
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
+
+        public virtual ICollection<ArticleCategory> ArticleCategory { get; set; }
     }
 }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<SocialAccount>
+@{
+    ViewData["Title"] = "Default";
+}
+
+
+<section class="social-accounts mt-5">
+    <div class="col-12 title p-0">
+        <h6>SUBSCRIBE & FOLLOW</h6>
+    </div>
+    <hr />
+    <div class="col-12 p-0">
+        @foreach (var item in Model)
+        {
+            <span class="accounts"><i class="@item.Icon"></i></span>
+        }
+    </div>
+</section>
+

@@ -14,9 +14,9 @@
 
         @foreach (var item in Model)
         {
-            @if (item.SubMenus == null)
+            @if (item.SubMenus.Count == 0)
             {
-                <li class="side-list-items"><a asp-action="@item.Action" asp-controller="@item.Controller">item.Name</a></li>
+                <li class="side-list-items"><a asp-action="@item.Action" asp-controller="@item.Controller">@item.Name</a></li>
             }
             else
             {
