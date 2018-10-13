@@ -84,6 +84,7 @@ namespace BlogezyTeamWork
                             Name = "Home",
                             Slug = "home",
                             Sorting = 1,
+                            Visibility = true,
                             Controller = "Home",
                             Action = "Index"
                         };
@@ -93,6 +94,7 @@ namespace BlogezyTeamWork
                             Name = "Features",
                             Slug = "features",
                             Sorting = 2,
+                            Visibility = true
                         };
 
                         #endregion
