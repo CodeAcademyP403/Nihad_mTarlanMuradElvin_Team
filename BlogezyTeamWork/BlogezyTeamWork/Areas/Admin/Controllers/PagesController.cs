@@ -30,7 +30,7 @@ namespace BlogezyTeamWork.Areas.Admin.Controllers
                 using (_db)
                 {
                     //Init the list
-                    Menus = _db.Menus.ToList();
+                    Menus = _db.Menus.OrderBy(x => x.Sorting).ToList();
                 }
 
                 //Return view with list
@@ -66,6 +66,32 @@ namespace BlogezyTeamWork.Areas.Admin.Controllers
                 await _db.SaveChangesAsync();
                 //Redirect
                 return RedirectToAction(nameof(List));
+            }
+
+
+            // POST: Admin/Shop/ReorderCategories
+            [HttpPost]
+            public void ReorderMenus(int[] id)
+            {
+                using (_db)
+                {
+                    //Set initial count
+                    int count = 1;
+
+                    //Declare CategoryDTO
+                    Menu menu;
+
+                    //Set sorting for each category
+                    foreach (var catId in id)
+                    {
+                        menu = _db.Menus.Find(catId);
+                        menu.Sorting = count;
+
+                        _db.SaveChanges();
+
+                        count++;
+                    }
+                }
             }
 
             // GET: Admin/Menu/id

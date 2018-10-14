@@ -21,7 +21,7 @@ namespace BlogezyTeamWork.Components
         //convention based configuration
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<Menu> menus = await _db.Menus.Include(x => x.SubMenus).Where(x => x.Visibility == true).ToListAsync();
+            List<Menu> menus = await _db.Menus.Include(x => x.SubMenus).Where(x => x.Visibility == true).OrderBy(x => x.Sorting).ToListAsync();
 
             return View(menus);
 
