@@ -112,7 +112,7 @@ namespace BlogezyTeamWork.Controllers
             }
 
             //Redirect
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Article", "Home", new { Id = id });
         }
     }
 }
