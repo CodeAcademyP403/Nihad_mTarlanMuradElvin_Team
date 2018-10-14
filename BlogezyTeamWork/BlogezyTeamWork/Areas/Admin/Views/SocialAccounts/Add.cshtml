@@ -1,0 +1,49 @@
+﻿@model SocialAccount
+           <!-- Row -->
+<div class="row">
+
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <div class="card-block">
+                <form asp-action="Add" asp-controller="SocialAccounts" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Name" class="form-control form-control-line">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Url" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Url" class="form-control form-control-line">
+                            <span asp-validation-for="Url"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Icon" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Icon" class="form-control form-control-line">
+                            <span asp-validation-for="Icon"></span>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<!-- Row -->
+
+
+
+
+<script src="~/js/jquery.min.js"></script>
+
+
+
