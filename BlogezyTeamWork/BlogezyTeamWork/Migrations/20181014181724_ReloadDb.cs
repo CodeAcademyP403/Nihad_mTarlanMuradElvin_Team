@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlogezyTeamWork.Migrations
 {
-    public partial class last : Migration
+    public partial class ReloadDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

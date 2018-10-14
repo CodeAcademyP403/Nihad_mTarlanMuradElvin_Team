@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogezyTeamWork.Migrations
 {
     [DbContext(typeof(BlogezyDbContext))]
-    [Migration("20181014052025_last")]
-    partial class last
+    [Migration("20181014181724_ReloadDb")]
+    partial class ReloadDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

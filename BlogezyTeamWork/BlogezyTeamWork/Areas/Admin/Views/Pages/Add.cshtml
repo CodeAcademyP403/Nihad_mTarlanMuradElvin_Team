@@ -1,0 +1,53 @@
+﻿@model Menu
+           <!-- Row -->
+<div class="row">
+
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <div class="card-block">
+                <form asp-action="Add" asp-controller="Pages" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Name" type="text" class="form-control form-control-line">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Action" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Action" type="text" class="form-control form-control-line">
+                            <span asp-validation-for="Action"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Controller" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Controller" type="text" class="form-control form-control-line">
+                            <span asp-validation-for="Controller"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Visibility" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Visibility" type="checkbox" class="form-control form-control-line">
+                            <span asp-validation-for="Visibility"></span>
+                        </div>
+                    </div>
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<!-- Row -->
+
+
+
+
+<script src="~/js/jquery.min.js"></script>
+
+
+
