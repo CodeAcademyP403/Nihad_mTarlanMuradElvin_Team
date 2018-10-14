@@ -38,6 +38,8 @@ namespace BlogezyTeamWork
                 options.IdleTimeout = TimeSpan.FromMinutes(15);//You can set Time   
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogezyDbContext>()
                 .AddDefaultTokenProviders();
@@ -53,6 +55,7 @@ namespace BlogezyTeamWork
                 options.User.RequireUniqueEmail = true;
 
             });
+
             services.AddMvc();
 
         }
@@ -74,6 +77,11 @@ namespace BlogezyTeamWork
             app.UseAuthentication();
 
             app.UseMvc(routes => {
+
+                routes.MapRoute(
+                    name: "Admin",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}"

@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>GamePaymentSystem | AdminPanels</title>
+
+    <meta name="description" content="Game Payment System Admin Panel">
+    <meta name="author" content="Ibrahimkhanli Murad">
+    <meta name="viewport" content="width=800, user-scalable=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/demo.css">
+</head>
+
+<body>
+
+    <div class="meny">
+        <h2>More Choices</h2>
+        <ul>
+            <li><a asp-action="Index" asp-controller="Home">Profile</a></li>
+            <li><a asp-action="List" asp-controller="Articles">Articles</a></li>
+            <li><a asp-action="List" asp-controller="SocialAccounts">Social Accounts</a></li>
+            <li><a asp-action="List" asp-controller="Categories">Categories</a></li>
+        </ul>
+    </div>
+
+    <div class="meny-arrow"></div>
+
+    <div class="contents">
+
+        @RenderBody()
+
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/meny.js"></script>
+    <script src="~/js/admin.js"></script>
+
+
+</body>
+</html>

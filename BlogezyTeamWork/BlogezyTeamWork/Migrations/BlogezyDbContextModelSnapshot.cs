@@ -160,6 +160,8 @@ namespace BlogezyTeamWork.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateAdded");
+
                     b.Property<string>("Text");
 
                     b.HasKey("Id");

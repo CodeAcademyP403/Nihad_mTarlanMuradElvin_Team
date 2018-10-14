@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +27,11 @@ namespace BlogezyTeamWork.Models
         public DateTime EditDate { get; set; }
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
+
+        [Required]
+        [DataType(DataType.Upload)]
+        [NotMapped]
+        public IFormFile File { get; set; }
 
         public virtual ICollection<ArticleCategory> ArticleCategory { get; set; }
         public virtual ICollection<ArticleUserComments> ArticleComments { get; set; }

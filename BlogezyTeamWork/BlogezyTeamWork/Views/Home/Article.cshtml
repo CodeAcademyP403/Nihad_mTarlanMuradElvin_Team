@@ -24,22 +24,49 @@
             </ul>
         </header>
         <div class="img col-12 p-0">
-            <a asp-action="Article" asp-controller="Home"> <img src="~/Images/@Model.PhotoPath" alt="Alternate Text" /></a>
+            <a asp-action="Article" asp-controller="Home"> <img src="~/uploads/@Model.PhotoPath" alt="Alternate Text" /></a>
             <div class="overlay"></div>
         </div>
         <div class="description col-12 p-0 my-3">
             <p>@Model.Description</p>
-        </div>
+        </div><hr />
         @if (Model.ArticleComments.Any())
         {
             @foreach (var comment in Model.ArticleComments)
             {
-                <div class="comment col-lg-12 p-0 my-3">
+                @*<div class="comment col-lg-12 p-0 my-3">
                     <h6>@comment.AppUser.UserName</h6>
                     <div class="user">
                         <p>@comment.Comment.Text</p>
                     </div>
+                </div>*@
+
+                <div class="row">
+                <div class="col-sm-1">
+                <div class="thumbnail">
+                <img style="width: 40px;" class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+
+                <div class="col-sm-5">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>@comment.AppUser.UserName</strong> <span class="text-muted">@comment.Comment.DateAdded</span>
                 </div>
+                <div class="panel-body">
+                    @comment.Comment.Text
+                </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+                    @if (comment.AppUser.Id == @HttpContextAccessor.HttpContext.Session.GetString("id"))
+                    {
+                        <div class="col-sm-3">
+                            <a class="btn btn-danger" asp-action="DeleteComment" asp-controller="Home" asp-route-id="@comment.CommentId">Delete</a>
+                        </div><!-- /col-sm-5 -->
+                    }
+                    
+                </div>  
+                
             }
         }
             @if (Context.Session.GetString("isLoged") != null)
@@ -54,5 +81,5 @@
                 </form>
             }
 
-        </div>
+    </div>
 </section>
