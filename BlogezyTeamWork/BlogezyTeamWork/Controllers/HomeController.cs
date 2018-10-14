@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogezyTeamWork.Data;
-using BlogezyTeamWork.Models.ViewModels;
+using BlogezyTeamWork.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,24 +22,91 @@ namespace BlogezyTeamWork.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var articles = await _db.Articles.OrderByDescending(x => x.AddedDate)
-                                                              .ToListAsync();
+            //var articles = from m in _db.ArticleCategories
+            //               join t in _db.Articles on m.ArticleId equals t.Id
+            //               join w in _db.Categories on m.CategoryId equals w.Id
+            //               select new 
 
-            var menus = await _db.Menus.Include(x => x.SubMenus).Where(x => x.Visibility == true)
-                                                              .ToListAsync();
+            var articles = await _db.Articles.Include(x => x.ArticleCategory).OrderByDescending(x => x.AddedDate)
+                                                  .ToListAsync();
 
-            var socialaccounts = await _db.SocialAccounts
-                                                        .ToListAsync();
+            //var articles = await _db.Articles.Include(m => m.ArticleCategory).ToListAsync();
+            //{ }
+            //var name = articles[0].ArticleCategory.FirstOrDefault().Category.Name;
 
-            HomeIndexModel him = new HomeIndexModel
+            return View(articles);
+
+        }
+
+        [HttpGet]
+        public IActionResult Article(int id)
+        {
+
+            Article article = _db.Articles.Include(x => x.ArticleComments).Where(x => x.Id == id).FirstOrDefault();
+            return View(article);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(int id)
+        {
+            if (ModelState.IsValid)
             {
-                Articles = articles,
-                Menus = menus,
-                SocialAccounts = socialaccounts
-            };
+                //var username = HttpContext.Session.GetString("name");
+                //AppUser user = await _db.Users.Where(x => x.UserName == username).FirstOrDefaultAsync();
+                //Article article = await _db.Articles.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var commentText = HttpContext.Request.Form["comment-input"].ToString();
+                Comment cm = new Comment()
+                {
+                    Text = commentText,
+                    DateAdded = DateTime.Now
+                };
 
-            return View(him);
+                await _db.Comments.AddAsync(cm);
+                await _db.SaveChangesAsync();
 
+                ArticleUserComments auc = new ArticleUserComments()
+                {
+                    //AppUser = user,
+                    AppUserId = HttpContext.Session.GetString("id"),
+                    //Comment = cm,
+                    CommentId = cm.Id,
+                    //Article = article,
+                    ArticleId = id
+                };
+                await _db.ArticleUserComments.AddAsync(auc);
+                await _db.SaveChangesAsync();
+
+                Article article = await _db.Articles.FindAsync(id);
+                article.CommentCount++;
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Article", "Home", new { Id = id });
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DeleteComment(int id)
+        {
+       
+            //Delete comment from DB
+            using (_db)
+            {
+                ArticleUserComments auc = await _db.ArticleUserComments.Where(x => x.CommentId == id).FirstOrDefaultAsync();
+
+                _db.ArticleUserComments.Remove(auc);
+
+                _db.SaveChanges();
+
+                Comment comment = await _db.Comments.FindAsync(id);
+
+                _db.Comments.Remove(comment);
+
+                _db.SaveChanges();
+            }
+
+            //Redirect
+            return RedirectToAction(nameof(Index));
         }
     }
 }

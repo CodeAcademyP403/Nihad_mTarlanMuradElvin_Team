@@ -1,0 +1,85 @@
+﻿@model Article
+
+<h4>Article</h4>
+<hr />
+<div class="row">
+
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <div class="card-block">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Detail" class="control-label"></label>
+                        <input asp-for="Detail" class="form-control" />
+                        <span asp-validation-for="Detail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="File" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input type="file" accept="image/*" asp-for="File" class="form-control form-control-line">
+                            <img src="#" alt="Image Preview" id="imgpreview" />
+                            <span asp-validation-for="File"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<!-- Row -->
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+
+    $(function () {
+
+        //Preview selected image
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("img#imgpreview")
+                        .attr("src", e.target.result)
+                        .width(200)
+                        .height(200);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#File").change(function () {
+            readURL(this);
+        })
+
+
+    });
+
+</script>
+
+

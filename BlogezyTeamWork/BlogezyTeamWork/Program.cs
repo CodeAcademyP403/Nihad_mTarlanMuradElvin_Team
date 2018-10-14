@@ -31,7 +31,7 @@ namespace BlogezyTeamWork
                             Name = "Beautiful Day With Friends In Paris",
                             Description = "Whether an identity or campaign, we make your brand visible, relevant and effective by placing the digital at the center of its ecosystem, without underestimating the power of traditional media. Whether an identity or campaign, we make your brand visible.",
                             Detail = "Whether an identity or campaign, we make your brand visible, relevant and effective by placing the digital at the center of its ecosystem, without underestimating the power of traditional media. Whether an identity or campaign, we make your brand visible.",
-                            PhotoPath = null,
+                            PhotoPath = "blog-1.jpg",
                             AddedDate = DateTime.Now,
                             EditDate = DateTime.Now,
                             ViewCount = 0,
@@ -125,6 +125,48 @@ namespace BlogezyTeamWork
 
 
                     }
+
+                    if (!dbContext.SocialAccounts.Any())
+                    {
+                        #region default menus
+                        SocialAccount facebok = new SocialAccount()
+                        {
+                            Name = "Facebook",
+                            Url = "facebook.com",
+                            
+                        };
+
+                        SocialAccount twitter = new SocialAccount()
+                        {
+                            Name = "Twitter",
+                            Url = "twitter.com",
+                         
+                        };
+
+                        SocialAccount instagram = new SocialAccount()
+                        {
+                            Name = "Instagram",
+                            Url = "instagram.com",
+                            
+                        };
+
+                        SocialAccount pinterest = new SocialAccount()
+                        {
+                            Name = "Pinterest",
+                            Url = "pinterest.com",
+                            
+                        };
+
+                        #endregion
+
+                        dbContext.SocialAccounts.AddRange(facebok, twitter, instagram, pinterest);
+                        dbContext.SaveChanges();
+
+                      
+                    }
+
+                    UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
+
                 }
             }
 
