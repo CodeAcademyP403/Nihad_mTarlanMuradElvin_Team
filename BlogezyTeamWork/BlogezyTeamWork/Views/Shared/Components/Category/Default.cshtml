@@ -1,0 +1,22 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Default";
+}
+
+<section class="social-accounts mt-5">
+    <div class="col-12 title p-0">
+        <h6>CATEGORIES</h6>
+    </div>
+    <hr />
+    <div class="col-12 p-0">
+        <ul class="category-list">
+            @foreach (var item in Model)
+            {
+                <li class="category-list-items">
+                    <a href="#">@item.Name (@item.ArticleCount)</a>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+

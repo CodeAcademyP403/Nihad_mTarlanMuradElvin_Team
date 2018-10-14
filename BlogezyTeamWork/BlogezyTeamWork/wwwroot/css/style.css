@@ -164,3 +164,14 @@ body {
     border-right-color: #ddd;
     border-width: 8px;
 }
+.category-list-items{
+    color:#555;
+    padding:15px;
+}
+.category-list-items a{
+    text-decoration:none;
+    color:#555;
+}
+    .category-list-items a:hover{
+        text-decoration: none;
+    }

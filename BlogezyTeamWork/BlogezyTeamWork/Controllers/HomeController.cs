@@ -42,7 +42,7 @@ namespace BlogezyTeamWork.Controllers
         public IActionResult Article(int id)
         {
 
-            Article article = _db.Articles.Include(x => x.ArticleComments).Where(x => x.Id == id).FirstOrDefault();
+            Article article = _db.Articles.Include(x => x.ArticleComments).Where(x=>x.Id == id).FirstOrDefault();
             return View(article);
         }
 
