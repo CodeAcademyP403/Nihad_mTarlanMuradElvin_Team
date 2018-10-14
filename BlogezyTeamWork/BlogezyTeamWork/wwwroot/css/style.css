@@ -202,8 +202,18 @@ body {
 .post-info a{
     padding-top:0px;
 }
-    .post-info a:hover {
-        text-decoration: none;
-        color: #007bff;
-        transition:all 0.3s linear;
-    }
+.post-info a:hover {
+    text-decoration: none;
+    color: #007bff;
+    transition:all 0.3s linear;
+}
+
+
+
+.admin-about{
+    margin-top: 20px!important; 
+}
+
+.blog .img img {
+    border-radius: 5px;
+}

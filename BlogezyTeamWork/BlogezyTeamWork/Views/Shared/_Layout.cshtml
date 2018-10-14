@@ -16,9 +16,9 @@
 
 <body>
     <main>
-        <div class="col-11 main-page mx-auto my-5">
+        <div class="col-11 main-page mx-auto my-3">
             <div class="row">
-                <div class="col-lg-3 left-side">
+                <div class="col-lg-2 left-side pt-3">
                     <div class="col-12 login-logout">
                         <ul>
                             @if (Context.Session.GetString("isLoged") == null)
@@ -37,7 +37,7 @@
                     <vc:Menu></vc:Menu>
 
                 </div>
-                <div class="col-lg-6 pl-5 right-side">
+                <div class="col-lg-7 pl-3 right-side">
                     @RenderBody()
                 </div>
 
