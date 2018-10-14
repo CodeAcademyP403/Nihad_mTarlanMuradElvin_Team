@@ -88,11 +88,13 @@ namespace BlogezyTeamWork.Controllers
         [HttpGet]
         public async Task<ActionResult> DeleteComment(int id)
         {
-       
+            int artId;
             //Delete comment from DB
             using (_db)
             {
                 ArticleUserComments auc = await _db.ArticleUserComments.Where(x => x.CommentId == id).FirstOrDefaultAsync();
+                artId = auc.ArticleId;
+
 
                 Article article = await _db.Articles.FindAsync(auc.ArticleId);
                 article.CommentCount--;
@@ -112,7 +114,7 @@ namespace BlogezyTeamWork.Controllers
             }
 
             //Redirect
-            return RedirectToAction("Article", "Home", new { Id = id });
+            return RedirectToAction("Article", "Home", new { Id = artId });
         }
     }
 }

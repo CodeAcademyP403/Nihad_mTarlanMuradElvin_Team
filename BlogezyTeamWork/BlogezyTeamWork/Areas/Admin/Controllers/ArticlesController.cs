@@ -70,6 +70,21 @@ namespace BlogezyTeamWork.Areas.Admin.Controllers
 
                 await _db.Articles.AddAsync(article);
                 await _db.SaveChangesAsync();
+
+                var categorynames = Request.Form["categories"].ToList();
+
+                foreach (var item in categorynames)
+                {
+                    Category cat = await _db.Categories.Where(x => x.Name == item).FirstOrDefaultAsync();
+                    ArticleCategory articleCategory = new ArticleCategory()
+                    {
+                        ArticleId = article.Id,
+                        CategoryId = cat.Id
+                    };
+                    await _db.ArticleCategories.AddAsync(articleCategory);
+                    await _db.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(List));
             }
             else

@@ -14,7 +14,7 @@
                         </div>
                     </div>
 
-                  
+
                     <div class="form-group">
                         <label asp-for="Description" class="col-md-12"></label>
                         <div class="col-md-12">
@@ -29,6 +29,18 @@
                             <span asp-validation-for="Detail"></span>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">Categories</label>
+                        <div class="col-md-12">
+                            <select name="categories" class="form-control form-control-line" multiple>
+                                <option value="Branding">Branding</option>
+                                <option value="Design">Design</option>
+                                <option value="Sport">Sport</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label asp-for="File" class="col-md-12"></label>
                         <div class="col-md-12">
@@ -37,7 +49,7 @@
                             <span asp-validation-for="File"></span>
                         </div>
                     </div>
-                   
+
                     <input type="submit" value="Send" />
                 </form>
             </div>
