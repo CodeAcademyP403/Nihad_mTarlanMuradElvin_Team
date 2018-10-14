@@ -94,6 +94,10 @@ namespace BlogezyTeamWork.Controllers
             {
                 ArticleUserComments auc = await _db.ArticleUserComments.Where(x => x.CommentId == id).FirstOrDefaultAsync();
 
+                Article article = await _db.Articles.FindAsync(auc.ArticleId);
+                article.CommentCount--;
+                await _db.SaveChangesAsync();
+
                 _db.ArticleUserComments.Remove(auc);
 
                 _db.SaveChanges();
@@ -101,6 +105,8 @@ namespace BlogezyTeamWork.Controllers
                 Comment comment = await _db.Comments.FindAsync(id);
 
                 _db.Comments.Remove(comment);
+
+                
 
                 _db.SaveChanges();
             }
