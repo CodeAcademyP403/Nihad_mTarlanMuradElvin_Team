@@ -46,19 +46,19 @@ namespace BlogezyTeamWork.Controllers
                         HttpContext.Session.SetString("id", user.Id);
                         HttpContext.Session.SetString("name", user.UserName);
                         HttpContext.Session.SetString("isLoged", "true");
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        //return RedirectToAction("Index", "Home", new { area = "" });
 
-                        //if (userRole)
-                        //{
-                        //    return RedirectToAction("Index", "Home",new { area= "Admin" });
-                        //}
-                        //else
-                        //{
-                        //    HttpContext.Session.SetString("id", user.Id);
-                        //    HttpContext.Session.SetString("name", user.UserName);
-                        //    HttpContext.Session.SetString("isLoged", "true");
-                        //    return RedirectToAction("Index", "Home",new { area = "" });
-                        //}
+                        if (userRole)
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        }
+                        else
+                        {
+                            HttpContext.Session.SetString("id", user.Id);
+                            HttpContext.Session.SetString("name", user.UserName);
+                            HttpContext.Session.SetString("isLoged", "true");
+                            return RedirectToAction("Index", "Home", new { area = "" });
+                        }
 
                     }
 

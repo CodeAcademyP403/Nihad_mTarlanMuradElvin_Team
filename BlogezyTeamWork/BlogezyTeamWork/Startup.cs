@@ -38,6 +38,8 @@ namespace BlogezyTeamWork
                 options.IdleTimeout = TimeSpan.FromMinutes(15);//You can set Time   
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogezyDbContext>()
                 .AddDefaultTokenProviders();
@@ -53,6 +55,7 @@ namespace BlogezyTeamWork
                 options.User.RequireUniqueEmail = true;
 
             });
+
             services.AddMvc();
 
         }
