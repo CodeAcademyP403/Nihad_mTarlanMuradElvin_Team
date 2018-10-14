@@ -1,0 +1,19 @@
+﻿@model List<Article>
+<section class="social-accounts mt-5">
+    <div class="col-12 title p-0">
+        <h6>POPULAR POSTS</h6>
+    </div>
+    <hr />
+    @foreach (var item in Model)
+    {
+     <div class="row">
+         <div class="col-lg-4 post-img">
+             <img src="~/uploads/@item.PhotoPath" alt="Alternate Text" />
+         </div>
+         <div class="col-lg-8 p-0 post-info">
+             <a asp-action="Article" asp-controller="Home" asp-route-id="@item.Id">@item.Name</a>
+             <p>@item.AddedDate.ToString("dd-MM-yyyy hh:mm")</p>
+         </div>
+     </div>
+    }
+</section>

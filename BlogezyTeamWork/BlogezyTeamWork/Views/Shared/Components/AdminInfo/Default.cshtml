@@ -1,0 +1,19 @@
+﻿@model List<AdminInfo>
+
+<section class="social-accounts mt-5">
+    <div class="col-12 title p-0">
+        <h6>ABOUT ME</h6>
+    </div>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-12 p-0 admin-img">
+            <img src="~/uploads/@item.PhotoPath" />
+        </div>
+        <div class="col-lg-12 admin-about">
+            <p>@item.About</p>
+        </div>
+    }
+</section>
+
+

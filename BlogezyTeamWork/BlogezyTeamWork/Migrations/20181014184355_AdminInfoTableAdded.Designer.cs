@@ -4,39 +4,22 @@ using BlogezyTeamWork.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogezyTeamWork.Migrations
 {
     [DbContext(typeof(BlogezyDbContext))]
-    partial class BlogezyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181014184355_AdminInfoTableAdded")]
+    partial class AdminInfoTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BlogezyTeamWork.Models.AdminInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("About");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("PhotoPath");
-
-                    b.Property<string>("Surname");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdminInfos");
-                });
 
             modelBuilder.Entity("BlogezyTeamWork.Models.AppUser", b =>
                 {

@@ -43,6 +43,8 @@ namespace BlogezyTeamWork.Controllers
         {
 
             Article article = _db.Articles.Include(x => x.ArticleComments).Where(x=>x.Id == id).FirstOrDefault();
+            article.ViewCount++;
+            _db.SaveChanges();
             return View(article);
         }
 

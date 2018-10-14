@@ -23,6 +23,7 @@ namespace BlogezyTeamWork.Data
         public virtual DbSet<SubMenu> SubMenus { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<ArticleUserComments> ArticleUserComments { get; set; }
+        public virtual DbSet<AdminInfo> AdminInfos { get; set; }
        
     }
 }

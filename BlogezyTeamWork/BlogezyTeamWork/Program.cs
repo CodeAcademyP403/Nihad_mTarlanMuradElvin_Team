@@ -169,6 +169,18 @@ namespace BlogezyTeamWork
                       
                     }
 
+                    if (!dbContext.AdminInfos.Any())
+                    {
+                        AdminInfo adminInfo = new AdminInfo()
+                        {
+                            Name = "Murad",
+                            Surname = "Ibrahimkhanli",
+                            About="Pul pres Heyat Impres!!!",
+                            PhotoPath = "admin.jpg"
+                        };
+                        dbContext.AdminInfos.Add(adminInfo);
+                        dbContext.SaveChanges();
+                    }
                     UserAndRoleCreater.CreateAsync(scopedService, dbContext).Wait();
 
                 }
