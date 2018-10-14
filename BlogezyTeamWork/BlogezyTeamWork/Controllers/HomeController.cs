@@ -75,6 +75,11 @@ namespace BlogezyTeamWork.Controllers
                 };
                 await _db.ArticleUserComments.AddAsync(auc);
                 await _db.SaveChangesAsync();
+
+                Article article = await _db.Articles.FindAsync(id);
+                article.CommentCount++;
+                await _db.SaveChangesAsync();
+
                 return RedirectToAction("Article", "Home", new { Id = id });
             }
             return View();

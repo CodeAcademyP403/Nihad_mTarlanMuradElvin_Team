@@ -1,0 +1,87 @@
+﻿@model Article
+           <!-- Row -->
+<div class="row">
+
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <div class="card-block">
+                <form asp-action="Add" asp-controller="Articles" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Name" class="form-control form-control-line">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+
+                  
+                    <div class="form-group">
+                        <label asp-for="Description" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <textarea asp-for="Description" class="form-control form-control-line"></textarea>
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Detail" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <textarea asp-for="Detail" class="form-control form-control-line"></textarea>
+                            <span asp-validation-for="Detail"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File" class="col-md-12"></label>
+                        <div class="col-md-12">
+                            <input type="file" accept="image/*" asp-for="File" class="form-control form-control-line">
+                            <img src="#" alt="Image Preview" id="imgpreview" />
+                            <span asp-validation-for="File"></span>
+                        </div>
+                    </div>
+                   
+                    <input type="submit" value="Send" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<!-- Row -->
+
+
+
+
+<script src="~/js/jquery.min.js"></script>
+
+<script src="~/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script type="text/javascript">CKEDITOR.replace('Description');</script>
+
+<script>
+
+    $(function () {
+
+        //Preview selected image
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("img#imgpreview")
+                        .attr("src", e.target.result)
+                        .width(200)
+                        .height(200);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#File").change(function () {
+            readURL(this);
+        })
+
+
+    });
+
+</script>
+
+
